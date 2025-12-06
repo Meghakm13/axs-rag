@@ -123,7 +123,7 @@ Follow these steps to run the backend API and frontend UI.
 
 ```bash
 git clone <your-repo-url>
-cd axs-rag-assignment
+cd axs-rag
 ```
 
 ---
@@ -221,7 +221,7 @@ Implemented in: app/knowledge_base.py
 ## 🚀 7. Deployment
 
 * Hosted UI is available on Vercel.
-* Backend runs locally due to PostgreSQL requirements.
+* Backend API is running live on Render with PostgreSQL.
 
 ---
 ## 🧭 8. Future Improvements
