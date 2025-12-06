@@ -49,10 +49,10 @@ CREATE TABLE order_items (
 );
 
 -- =========================
--- Sample data (Indian context)
+-- Sample data
 -- =========================
 
--- Customers (Indian names + cities)
+-- Customers
 INSERT INTO customers (name, city, created_at) VALUES
 ('Rajesh Kumar',       'Mumbai',      '2023-01-10'),
 ('Priya Sharma',       'Delhi',       '2023-02-15'),
@@ -65,7 +65,7 @@ INSERT INTO customers (name, city, created_at) VALUES
 ('Vikram Deshmukh',    'Nagpur',      '2023-09-10'),
 ('Pooja Gupta',        'Kolkata',     '2023-10-01');
 
--- Employees (Indian names + roles)
+-- Employees 
 INSERT INTO employees (name, role, hired_at) VALUES
 ('Sandeep Desai',     'Sales Executive',     '2022-01-15'),
 ('Kiran Patil',       'Relationship Manager','2021-06-10'),
@@ -76,7 +76,7 @@ INSERT INTO employees (name, role, hired_at) VALUES
 ('Deepa Nair',        'Support Executive',   '2021-12-12'),
 ('Arjun Mehta',       'Sales Executive',     '2023-03-22');
 
--- Products (Indian-style fintech/retail items with INR-like prices)
+-- Products
 INSERT INTO products (name, category, price) VALUES
 ('UPI QR Standee',              'Payments',       299.00),
 ('POS Machine Basic',           'Payments',     18000.00),
