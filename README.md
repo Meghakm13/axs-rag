@@ -1,8 +1,8 @@
-SQL Multi-Agent System
+# 📘 NL → SQL Multi-Agent System
 
-Convert Natural Language Questions → SQL Queries → Database Answers
+### Convert Natural Language Questions → SQL Queries → Database Answers
 
-📝 1. Overview
+## 📝 1. Overview
 
 This project implements a **multi-agent pipeline** that converts **natural language questions** into **PostgreSQL queries**, executes them, and returns a **human-readable answer**.
 
@@ -11,16 +11,18 @@ The system supports:
 * Counting 
 * Aggregations 
 * Filters 
-* Time-based phrases
+* Time-based phrases 
 * Joins between customers, orders, employees, etc.
 
 Frontend: simple web UI.
 Backend: FastAPI.
-Database: PostgreSQL with Indian-style mock business data.
+Database: PostgreSQL with mock business data.
 
-🧩 2. Architecture
+---
 
-🔄 Multi-Agent Flow
+## 🧩 2. Architecture
+
+### 🔄 Multi-Agent Flow
 
 ```
 User Question
@@ -36,7 +38,7 @@ User Question
 Final Response (JSON + UI)
 ```
 
-🧠 Agents
+### 🧠 Agents
 
 | Agent                   | Responsibility                                                |
 | ----------------------- | ------------------------------------------------------------- |
@@ -45,7 +47,9 @@ Final Response (JSON + UI)
 | **Retriever Agent**     | Executes SQL safely on PostgreSQL and returns rows            |
 | **Synthesizer Agent**   | Converts raw rows to clear, readable English answers          |
 
-🗂️ 3. Project Structure
+---
+
+## 🗂️ 3. Project Structure
 
 ```
 axs-rag-assignment/
@@ -67,11 +71,13 @@ axs-rag-assignment/
 └── .gitignore
 ```
 
-🗄️ 4. Database Schema (PostgreSQL)
+---
+
+## 🗄️ 4. Database Schema (PostgreSQL)
 
 The database contains context data (names, cities, INR values).
 
-🧱 Tables
+### 🧱 Tables
 
 * **customers**
   `id, name, city, created_at`
@@ -88,7 +94,7 @@ The database contains context data (names, cities, INR values).
 * **order_items**
   `id, order_id, product_id, quantity, line_total`
 
-📦 Sample Rows
+### 📦 Sample Rows
 
 100+ rows of business data:
 
@@ -96,8 +102,9 @@ The database contains context data (names, cities, INR values).
 * Prices in ₹ (INR)
 * Time coverage across 2023–2024 for time-based queries
 
+---
 
-🚀 5. Setup Instructions
+## 🚀 5. Setup Instructions
 
 ### 5.1 Prerequisites
 
@@ -144,3 +151,5 @@ pip install -r requirements.txt
 * Pagination for result sets
 * Authentication for API
 * Deploy backend + frontend on cloud (Render/Netlify)
+* Create a more professional header section with a logo-style ASCII banner
+* Proofread your README for interview polish
