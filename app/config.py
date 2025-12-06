@@ -1,9 +1,10 @@
 # app/config.py
+import os
 
 DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "dbname": "axs_assignment",
-    "user": "postgres",          # change if different
-    "password": "MOD12345"  # actual Postgres password
+    "host": os.getenv("DB_HOST", "localhost"),
+    "port": int(os.getenv("DB_PORT", "5432")),
+    "dbname": os.getenv("DB_NAME", "axs_assignment"),
+    "user": os.getenv("DB_USER", "postgres"),
+    "password": os.getenv("DB_PASSWORD", ""),
 }
