@@ -105,7 +105,7 @@ The database contains context data (names, cities, INR values).
 
 ---
 
-## 🚀 5. Setup Instructions
+## ▶️ 5. Setup Instructions
 
 ### 5.1 Prerequisites
 
@@ -218,7 +218,13 @@ Implemented in: app/knowledge_base.py
 
 ---
 
-## 🧭 7. Future Improvements
+## 🚀 7. Deployment
+
+* Hosted UI is available on Vercel.
+* Backend runs locally due to PostgreSQL requirements.
+
+---
+## 🧭 8. Future Improvements
 
 * Use LLM for generating SQL instead of rule-based agent
 * Vector embeddings for schema understanding
