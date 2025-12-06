@@ -5,5 +5,5 @@ DB_CONFIG = {
     "port": 5432,
     "dbname": "axs_assignment",
     "user": "postgres",          # change if different
-    "password": "MOD12345"  # put your actual Postgres password
+    "password": "MOD12345"  # actual Postgres password
 }

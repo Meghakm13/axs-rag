@@ -29,7 +29,7 @@ CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     category VARCHAR(50),
-    price NUMERIC(12, 2) NOT NULL -- INR values
+    price NUMERIC(12, 2) NOT NULL 
 );
 
 CREATE TABLE orders (
@@ -89,18 +89,18 @@ INSERT INTO products (name, category, price) VALUES
 ('Android Handheld Device',     'Payments',     25000.00),
 ('Retail Analytics Add-on',     'Software',      4999.00);
 
--- Orders (spread across months/years, INR totals)
+-- Orders 
 INSERT INTO orders (customer_id, employee_id, order_date, total_amount) VALUES
-(1, 1, '2023-01-25',  18599.00), -- Rajesh, UPI + POS Basic
-(2, 2, '2023-02-28',  39999.00), -- Priya, POS Pro + Printer
-(3, 1, '2023-03-15',  22999.00), -- Amit, Billing Starter + QR
-(4, 3, '2023-04-05',  28500.00), -- Neha, POS Basic + Scanner
-(5, 4, '2023-05-20',  49999.00), -- Sanjay, POS Pro + Billing Premium
-(6, 5, '2023-06-10',  31500.00), -- Ananya, Android Device + QR
-(7, 6, '2023-07-18',  21499.00), -- Farhan, Billing Starter + Scanner
-(8, 2, '2023-08-25',  45999.00), -- Kritika, POS Pro + Analytics
-(9, 7, '2023-09-30',  27999.00), -- Vikram, Android Device + QR + Standee
-(10,3, '2023-10-15',  18999.00), -- Pooja, Billing Starter + QR
+(1, 1, '2023-01-25',  18599.00), 
+(2, 2, '2023-02-28',  39999.00), 
+(3, 1, '2023-03-15',  22999.00),
+(4, 3, '2023-04-05',  28500.00), 
+(5, 4, '2023-05-20',  49999.00), 
+(6, 5, '2023-06-10',  31500.00), 
+(7, 6, '2023-07-18',  21499.00), 
+(8, 2, '2023-08-25',  45999.00), 
+(9, 7, '2023-09-30',  27999.00), 
+(10,3, '2023-10-15',  18999.00), 
 
 -- Some 2024 orders for "last year"/"this year" type questions
 (1, 8, '2024-01-08',  52999.00),
@@ -109,22 +109,22 @@ INSERT INTO orders (customer_id, employee_id, order_date, total_amount) VALUES
 (7, 4, '2024-04-22',  61999.00),
 (9, 5, '2024-05-05',  45999.00);
 
--- Order Items (make sure totals roughly match orders.total_amount)
+-- Order Items 
 -- Order 1 (id=1)
 INSERT INTO order_items (order_id, product_id, quantity, line_total) VALUES
-(1, 1, 1,   299.00),     -- UPI QR Standee
-(1, 2, 1, 18000.00);     -- POS Machine Basic
+(1, 1, 1,   299.00),     
+(1, 2, 1, 18000.00);     
 
 -- Order 2 (id=2)
 INSERT INTO order_items (order_id, product_id, quantity, line_total) VALUES
-(2, 3, 1, 32000.00),     -- POS Machine Pro
-(2, 6, 1,  6500.00),     -- Thermal Receipt Printer
-(2, 1, 1,   499.00);     -- QR Standee slight mismatch for variety
+(2, 3, 1, 32000.00),    
+(2, 6, 1,  6500.00),    
+(2, 1, 1,   499.00);     
 
 -- Order 3 (id=3)
 INSERT INTO order_items (order_id, product_id, quantity, line_total) VALUES
-(3, 4, 1,  7999.00),     -- Billing Starter
-(3, 1, 3,   897.00),     -- 3 x QR
+(3, 4, 1,  7999.00),   
+(3, 1, 3,   897.00),     
 (3, 7, 1,  4200.00);
 
 -- Order 4 (id=4)

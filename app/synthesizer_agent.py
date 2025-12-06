@@ -25,7 +25,7 @@ def generate_answer(question: str, rows: List[Dict[str, Any]]) -> str:
     if len(rows) == 1 and "total_amount" in row0:
         total = row0["total_amount"]
         try:
-            # format like ₹12,34,567.89 (approx, using std grouping)
+            # format like ₹12,34,567.89 with commas
             total_num = float(total)
             total_str = f"₹{total_num:,.2f}"
         except Exception:
@@ -33,7 +33,7 @@ def generate_answer(question: str, rows: List[Dict[str, Any]]) -> str:
         return f"The total revenue matching your question is {total_str}."
 
     # 3) Generic listing
-    preview_rows = rows[:5]  # show at most 5 rows
+    preview_rows = rows[:5]  
     lines = ["Here are some matching records (showing up to 5):"]
 
     for idx, row in enumerate(preview_rows, start=1):

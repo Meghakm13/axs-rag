@@ -4,7 +4,7 @@ from typing import Dict, Any, List, Tuple
 import re
 
 
-# Cities we have in data (lowercase)
+# Cities 
 KNOWN_CITIES = [
     "mumbai",
     "delhi",
@@ -23,7 +23,7 @@ def _detect_city(question: str) -> str | None:
     q = question.lower()
     for city in KNOWN_CITIES:
         if city in q:
-            # Capitalize nicely e.g. "mumbai" -> "Mumbai"
+            # Capitalize 
             return city.capitalize()
     return None
 
@@ -90,7 +90,7 @@ def _build_time_filter(question: str, alias: str = "o") -> str:
             f"{alias}.order_date < date_trunc('month', current_date) + interval '1 month'"
         )
     else:
-        # try explicit year like 2023, 2024
+        # Year specified
         year = _detect_year(q)
         if year:
             conditions.append(f"{alias}.order_date >= DATE '{year}-01-01'")

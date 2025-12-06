@@ -23,7 +23,7 @@ app = FastAPI(
 # Enable CORS (Cross-Origin Resource Sharing)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],      # ok for assignment/demo
+    allow_origins=["*"],      
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

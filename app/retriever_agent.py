@@ -14,7 +14,7 @@ def run_query(sql: str) -> List[Dict[str, Any]]:
     try:
         cur = conn.cursor()
         cur.execute(sql)
-        rows = cur.fetchall()  # thanks to RealDictCursor, these are dict-like
+        rows = cur.fetchall()  
         cur.close()
         return list(rows)
     finally:

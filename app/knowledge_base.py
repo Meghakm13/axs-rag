@@ -3,8 +3,7 @@
 from typing import List, Dict
 import re
 
-# Tiny internal knowledge base.
-# You can put things like: how the system works, what certain metrics mean, etc.
+
 DOCUMENTS: List[Dict[str, str]] = [
     {
         "id": "kb-1",

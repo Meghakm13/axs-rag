@@ -16,6 +16,6 @@ def get_connection():
         dbname=DB_CONFIG["dbname"],
         user=DB_CONFIG["user"],
         password=DB_CONFIG["password"],
-        cursor_factory=RealDictCursor,  # rows as dicts
+        cursor_factory=RealDictCursor,  
     )
     return conn
