@@ -116,31 +116,93 @@ The database contains context data (names, cities, INR values).
 ---
 
 ### 5.2 Running the System
+Follow these steps to run the backend API and frontend UI.
 
-Clone the repository:
-git clone <repo-url> && cd axs-rag-assignment
-
-Set up a virtual environment and install dependencies from requirements.txt.
-
-Create a PostgreSQL database (e.g. axs_assignment) and apply app/models.sql.
-
-Configure credentials in app/config.py.
-
-Start the backend with Uvicorn and open the API docs at /docs.
-
-Optionally serve web/index.html via a simple static server and interact with /ask from the browser.
+## **Step 1 — Clone the project**
 
 ```bash
 git clone <your-repo-url>
 cd axs-rag-assignment
+```
 
+---
+
+## **Step 2 — Create a virtual environment**
+
+```bash
 python -m venv venv
-venv\Scripts\activate       # Windows
-# or
-source venv/bin/activate   # Mac/Linux
+venv\Scripts\activate
+```
 
+---
+
+## **Step 3 — Install dependencies**
+
+```bash
 pip install -r requirements.txt
 ```
+
+---
+
+## **Step 4 — Setup PostgreSQL Database**
+
+1. Open PostgreSQL (psql or pgAdmin).
+2. Create a new database:
+
+```sql
+CREATE DATABASE axs_assignment;
+```
+
+3. Load the schema + sample Indian data:
+
+```bash
+psql -U postgres -d axs_assignment -f app/models.sql
+```
+
+4. Update your PostgreSQL **username** and **password** inside:
+
+```
+app/config.py
+```
+
+---
+
+## **Step 5 — Run Backend + Frontend Together (`runall.py`)**
+
+run **runall.py** file to start both servers at once.
+
+```bash
+python runall.py
+```
+
+This will automatically:
+
+* Start **FastAPI backend** at → `http://127.0.0.1:8000`
+* Start **Frontend UI** at → `http://127.0.0.1:5500/index.html`
+* Open the UI in your browser
+
+---
+
+## **Step 6 — Test Everything**
+
+### Backend health check:
+
+```
+http://127.0.0.1:8000/health
+```
+
+### API docs:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+### Frontend UI:
+
+```
+http://127.0.0.1:5500/index.html
+```
+
 
 ## 🧭 6. Future Improvements
 
