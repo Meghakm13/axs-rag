@@ -6,14 +6,26 @@ from .retriever_agent import run_query
 from .synthesizer_agent import generate_answer
 from .db import get_connection
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Any, Dict, List, Optional
 
+# ---------- FastAPI app setup ----------
 app = FastAPI(
     title="AXS RAG Assignment API",
     description="Simple multi-agent pipeline for NL → SQL → Answer",
     version="0.1.0",
 )
+
+# Enable CORS (Cross-Origin Resource Sharing)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],        # allow all origins (ok for assignment)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 # ---------- Request & Response Models ----------
