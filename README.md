@@ -54,14 +54,15 @@ Final Response (JSON + UI)
 ```
 axs-rag-assignment/
 ├── app/
-│   ├── main.py                 # FastAPI app & routes
-│   ├── config.py               # DB config
-│   ├── db.py                   # DB connection helper
+│   ├── main.py                 # FastAPI backend
+│   ├── config.py               # DB credentials
+│   ├── db.py                   # DB connector
 │   ├── schema_agent.py         # Agent 1
 │   ├── sql_generator_agent.py  # Agent 2
 │   ├── retriever_agent.py      # Agent 3
 │   ├── synthesizer_agent.py    # Agent 4
-│   ├── models.sql              # PostgreSQL schema & sample Indian data
+│   ├── knowledge_base.py       # Bonus: doc-based fallback
+│   └── models.sql              # Schema + sample data
 │
 ├── web/
 │   ├── index.html              # Frontend UI
@@ -203,8 +204,21 @@ http://127.0.0.1:8000/docs
 http://127.0.0.1:5500/index.html
 ```
 
+---
 
-## 🧭 6. Future Improvements
+## ⭐ 6. Bonus: Document-Based Knowledge Fallback
+
+If the SQL Generator cannot handle a question:
+
+The system falls back to a document-based knowledge store (in-memory)
+
+Provides explanatory answers using internal notes
+
+Implemented in: app/knowledge_base.py
+
+---
+
+## 🧭 7. Future Improvements
 
 * Use LLM for generating SQL instead of rule-based agent
 * Vector embeddings for schema understanding
@@ -212,6 +226,3 @@ http://127.0.0.1:5500/index.html
 * Security checks against SQL injection
 * Pagination for result sets
 * Authentication for API
-* Deploy backend + frontend on cloud (Render/Netlify)
-* Create a more professional header section with a logo-style ASCII banner
-* Proofread your README for interview polish
