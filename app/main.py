@@ -1,5 +1,9 @@
 # app/main.py
 
+from .schema_agent import get_relevant_schema
+from .sql_generator_agent import generate_sql
+from .retriever_agent import run_query
+from .synthesizer_agent import generate_answer
 from .db import get_connection
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -58,27 +62,51 @@ def test_db():
 
 
 
-# ---------- Dummy /ask endpoint ----------
+# ---------- /ask endpoint ----------
 
 @app.post("/ask", response_model=AskResponse)
 def ask_question(payload: AskRequest):
     """
-    Block 0: Just return a dummy response.
-    Later we will plug in:
-      - Schema Agent
-      - SQL Generator Agent
-      - Retriever Agent
-      - Synthesizer Agent
+    Main pipeline:
+    1. Schema Agent -> identify relevant tables/columns
+    2. SQL Generator Agent -> build SQL query
+    3. Retriever Agent -> execute SQL and get rows
+    4. Synthesizer Agent -> turn rows into human answer
     """
-    # For now, we don't do any real logic.
-    dummy_intermediate = IntermediateResult(
-        relevant_schema={},
-        sql_query="-- SQL will appear here in later blocks",
-        result_rows=[],
-    )
+    question = payload.question
+    intermediate = IntermediateResult()
 
-    return AskResponse(
-        answer="This is a dummy answer. The real pipeline will be added in the next blocks.",
-        intermediate=dummy_intermediate,
-        error=None,
-    )
+    try:
+        # 1) Schema Agent
+        schema_info = get_relevant_schema(question)
+        intermediate.relevant_schema = schema_info
+
+        # 2) SQL Generator Agent
+        sql_query = generate_sql(question, schema_info)
+        intermediate.sql_query = sql_query
+
+        # 3) Retriever Agent
+        result_rows = run_query(sql_query)
+        intermediate.result_rows = result_rows
+
+        # 4) Synthesizer Agent
+        answer = generate_answer(question, result_rows)
+
+        return AskResponse(
+            answer=answer,
+            intermediate=intermediate,
+            error=None,
+        )
+
+    except ValueError as ve:
+        # Typically from SQL generator when it can't handle the question
+        return AskResponse(
+            answer="",
+            intermediate=intermediate,
+            error=str(ve),
+        )
+    except Exception as e:
+        # Any unexpected errors (DB issues, bugs, etc.)
+        # In real app you would log this.
+        raise HTTPException(status_code=500, detail=str(e))
+
